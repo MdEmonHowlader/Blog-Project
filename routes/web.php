@@ -15,3 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontendController::class, 'index'])->name('emon.index');
+Route::get('/single-post', [FrontendController::class, 'single'])->name('single.post');
+Route::get('/about', [FrontendController::class, 'About'])->name('about.page');
+Route::get('/blog', [FrontendController::class, 'Blog'])->name('blog.page');
+Route::get('/contact', [FrontendController::class, 'Contact'])->name('contact.page');

@@ -56,7 +56,7 @@
                 </div>
             </div>
             <div class="item">
-                <img src="{{ asset('front/assets/assets/images/banner-item-04.jpg')}}" alt="">
+                <img src="{{ asset('front/assets/images/banner-item-04.jpg')}}" alt="">
                 <div class="item-content">
                     <div class="main-content">
                         <div class="meta-category">
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <div class="item">
-                <img src="{{ asset('front/assets/assets/images/banner-item-05.jpg')}}" alt="">
+                <img src="{{ asset('front/assets/images/banner-item-05.jpg')}}" alt="">
                 <div class="item-content">
                     <div class="main-content">
                         <div class="meta-category">
