@@ -1,9 +1,11 @@
 <?php
 
+use App\Http\Controllers\Backend\BackendController;
+use App\Http\Controllers\CategroyController;
+use App\Http\Controllers\Front\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Backend\BackendController;
-use App\Http\Controllers\Front\FrontendController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -26,11 +28,13 @@ Route::get('/contact', [FrontendController::class, 'Contact'])->name('contact.pa
 
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', [BackendController::class, 'index'])
-    ->middleware(['auth', 'verified'])->name('dash.index');
+        ->middleware(['auth', 'verified'])->name('dash.index');
+
+    Route::resource('categroy', CategroyController::class);
 
 });
 
-// Route::get('/', function () {   
+// Route::get('/', function () {
 //     return view('Admin.index');
 // })->middleware(['auth', 'verified'])->name('dash.index');
 
