@@ -1,0 +1,24 @@
+.wrapper{
+    width: 100vw;
+    height: 100vh;
+    background-image: url('../../image/image1.jpg');
+    background-size: cover;
+    background-blend-mode: multiply;
+    background-color: rgba(0, 0, 0, 0.75);
+    position: relative;
+}
+.auth-section{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 400px;
+}
+p{
+    margin: 0;
+    font-size: 13px;
+}
+a{
+    text-decoration: rgb(240, 82, 3);
+    color: rgb(255, 11, 194);
+}
