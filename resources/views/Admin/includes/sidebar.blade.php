@@ -11,6 +11,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Categroy
                 </a>
+                <a class="nav-link" href="{{ route('tag.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    Tag
+                </a>
                 <div class="sb-sidenav-menu-heading">Interface</div>
                 <a class="nav-link collapsed" href="#" data-bs-toggle="collapse"
                     data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">

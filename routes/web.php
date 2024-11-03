@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Backend\BackendController;
 use App\Http\Controllers\CategroyController;
+use App\Http\Controllers\TagController;
 use App\Http\Controllers\Front\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -31,6 +32,7 @@ Route::group(['prefix' => 'dashboard'], function () {
         ->middleware(['auth', 'verified'])->name('dash.index');
 
     Route::resource('categroy', CategroyController::class);
+    Route::resource('tag', TagController::class);
 
 });
 
