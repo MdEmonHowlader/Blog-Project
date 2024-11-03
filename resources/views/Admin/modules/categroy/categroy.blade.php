@@ -3,10 +3,14 @@
 @section('sub_title', 'Create')
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-9">
             <div class="card">
                 <div class="card-header">
-                    <h4>Create Categroy</h4>
+                    <div class="d-flex justify-content-between">
+                        <h4>Create Categroy</h4>
+                        <a href="{{ route('categroy.index') }}"><button class="btn btn-success btn-sm mt-1">
+                            Back</button></a>
+                    </div
                 </div>
                 <div class="card-body">
 
@@ -19,6 +23,7 @@
                             </ul>
                         </div>
                     @endif
+                
                     {!! Form::open(['method' => 'post', 'route' => 'categroy.store']) !!}
                     {!! Form::label('name', 'Name:') !!}
                     {!! Form::text('name', null, [
@@ -41,6 +46,7 @@
                     ]) !!}
                     {!! Form::button('Create Categroy', ['type' => 'submit', 'class' => 'btn btn-success mt-2']) !!}
                     {!! Form::close() !!}
+                 
                 </div>
             </div>
         </div>

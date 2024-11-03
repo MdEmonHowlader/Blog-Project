@@ -6,7 +6,12 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                    <h4>Categroy List</h4>
+                    <div class="d-flex justify-content-between">
+                        <h4>Categroy List</h4>
+                        <a href="{{ route('categroy.create') }}"><button class="btn btn-success btn-sm">Add</button></a>
+
+                    </div>
+                    
                 </div>
                 <div class="card-body">
                     <table class="table table-striped table-bordered table-hover">
@@ -36,14 +41,21 @@
                                     <td>{{ $category->created_at->toDayDateTimeString() }}</td>
                                     <td>{{ $category->created_at != $category->updated_at ? $category->updated_at->toDayDateTimeString() : 'Not Updated' }}
                                     </td>
-                                    <td><a href="{{ route('categroy.show', $category->id) }}">
-                                            <button class="btn btn-info btn-sm">
-                                                <i class="fa-solid fa-eye"></i>
-                                            </button></a>
-                                            <a href="{{ route('categroy.edit', $category->id) }}">
-                                                <button class="btn btn-warning btn-sm">
-                                                    <i class="fa-solid fa-edit"></i>
+                                    <td>
+                                        <div class="d-flex">
+                                            <a href="{{ route('categroy.show', $category->id) }}">
+                                                <button class="btn btn-info btn-sm">
+                                                    <i class="fa-solid fa-eye"></i>
                                                 </button></a>
+                                                <a href="{{ route('categroy.edit', $category->id) }}">
+                                                    <button class="btn btn-warning btn-sm">
+                                                        <i class="fa-solid fa-edit"></i>
+                                                    </button></a>
+    
+                                                {!! Form::open(['method'=>'delete', 'route'=>['categroy.destroy', $category->id]]) !!}
+                                                {!! Form::button('<i class="fa-solid fa-trash"></i>', ['type'=>'submit', 'class'=>'btn btn-danger btn-sm ']) !!}
+                                                {!! Form::close() !!}
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach
