@@ -1,5 +1,5 @@
 @extends('Admin.layouts.master')
-@section('page_title', ' Category')
+@section('page_title', 'Sub Category')
 @section('sub_title', 'Create')
 @section('content')
     <div class="row justify-content-center">
@@ -7,8 +7,8 @@
             <div class="card">
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
-                        <h4>Create Categroy</h4>
-                        <a href="{{ route('categroy.index') }}"><button class="btn btn-success btn-sm mt-1">
+                        <h4>Create Sub Categroy</h4>
+                        <a href="{{ route('subCategory.index') }}"><button class="btn btn-success btn-sm mt-1">
                             Back</button></a>
                     </div
                 </div>
@@ -24,9 +24,9 @@
                         </div>
                     @endif
                 
-                    {!! Form::open(['method' => 'post', 'route' => 'categroy.store']) !!}
-                    @include('Admin.modules.categroy.form')
-                    {!! Form::button('Create Categroy', ['type' => 'submit', 'class' => 'btn btn-success mt-2']) !!}
+                    {!! Form::open(['method' => 'post', 'route' => 'subCategory.store']) !!}
+                   @include('Admin.modules.subCategory.form')
+                    {!! Form::button('Create Sub Categroy', ['type' => 'submit', 'class' => 'btn btn-success mt-2']) !!}
                     {!! Form::close() !!}
                  
                 </div>

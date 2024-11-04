@@ -11,7 +11,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Categroy
                 </a>
-                <a class="nav-link" href="{{ route('post.index') }}">
+                <a class="nav-link" href="{{ route('subCategory.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Sub Categroy
                 </a>
