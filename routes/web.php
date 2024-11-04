@@ -1,8 +1,9 @@
 <?php
 
 use App\Http\Controllers\Backend\BackendController;
-use App\Http\Controllers\CategroyController;
-use App\Http\Controllers\TagController;
+use App\Http\Controllers\Backend\CategroyController;
+use App\Http\Controllers\Backend\TagController;
+use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Front\FrontendController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
 Route::get('/', [FrontendController::class, 'index'])->name('emon.index');
 Route::get('/single-post', [FrontendController::class, 'single'])->name('single.post');
 Route::get('/about', [FrontendController::class, 'About'])->name('about.page');
@@ -33,6 +32,7 @@ Route::group(['prefix' => 'dashboard'], function () {
 
     Route::resource('categroy', CategroyController::class);
     Route::resource('tag', TagController::class);
+    Route::resource('post', PostController::class);
 
 });
 

@@ -11,6 +11,10 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Categroy
                 </a>
+                <a class="nav-link" href="{{ route('post.index') }}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
+                    Sub Categroy
+                </a>
                 <a class="nav-link" href="{{ route('tag.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Tag

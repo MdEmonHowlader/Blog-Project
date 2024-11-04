@@ -1,20 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
-use App\Models\Tag;
+use App\Http\Controllers\Controller;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class TagController extends Controller
+class PostController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $tags=Tag::all();
-        return view('Admin.modules.tag.index', compact('tags'));
+        $posts=Post::all();
+        return view('Admin.modules.post.index', compact('posts'));
     }
 
     /**
@@ -22,7 +23,7 @@ class TagController extends Controller
      */
     public function create()
     {
-        return view('Admin.modules.tag.tag');
+        return view('Admin.modules.post.post');
     }
 
     /**
@@ -36,13 +37,13 @@ class TagController extends Controller
             'order_by' => 'required|numeric',
             'status' => 'required|in:0,1',
         ]);
-
-        $tag_data = $request->all();
-        $tag_data['slug'] = Str::slug($request->input('slug'));
-        Tag::create($tag_data);
+        $post_data = $request->all();
+        $post_data['slug'] = Str::slug($request->input('slug'));
+        Post::create($post_data);
         session()->flash('cls', 'success');
-        session()->flash('msg', 'Tag Created Successfully');
-        return redirect()->route('tag.index');
+        session()->flash('msg', 'Post Created Successfully');
+        return redirect()->route('post.index');
+
     }
 
     /**
@@ -50,22 +51,22 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        $tag=Tag::findOrFail($id);
-        return view('Admin.modules.tag.show', compact('tag'));
+        $post=Post::findOrFail($id);
+        return view('Admin.modules.post.show', compact('post'));
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tag $tag)
+    public function edit(Post $post)
     {
-        return view('Admin.modules.tag.edit', compact('tag'));
+        return view('Admin.modules.post.edit', compact('post'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tag $tag)
+    public function update(Request $request, Post $post)
     {
         $this->validate($request, [
             'name' => 'required|min:3|max:255',
@@ -73,22 +74,23 @@ class TagController extends Controller
             'order_by' => 'required|numeric',
             'status' => 'required|in:0,1',
         ]);
-        $tag_data = $request->all();
-        $tag_data['slug'] = Str::slug($request->input('slug'));
-        Tag::create($tag_data);
+        $post_data = $request->all();
+        $post_data['slug'] = Str::slug($request->input('slug'));
+        Post::create($post_data);
         session()->flash('cls', 'success');
-        session()->flash('msg', 'Tag Created Successfully');
-        return redirect()->route('tag.index');
+        session()->flash('msg', 'Post Created Successfully');
+        return redirect()->route('post.index');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tag $tag)
+    public function destroy(Post $post)
     {
-        $tag->delete();
+        $post->delete();
         session()->flash('cls', 'danger');
-        session()->flash('msg', 'Tag Delete Successfully');
-        return redirect()->route('tag.index');
+        session()->flash('msg', 'Post Delete Successfully');
+        return redirect()->route('post.index');
     }
 }
