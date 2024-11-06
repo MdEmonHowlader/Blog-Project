@@ -21,7 +21,6 @@
                                 <th>Name</th>
                                 <th>Slug</th>
                                 <th>Status</th>
-                                <th>Order By</th>
                                 <th>Create At</th>
                                 <th>Updated At</th>
                                 <th>Action</th>
@@ -34,10 +33,10 @@
                             @foreach ($posts as $post)
                                 <tr>
                                     <td>{{ $sl++ }}</td>
-                                    <td>{{ $post->name }}</td>
+                                    <td>{{ $post->title }}</td>
                                     <td>{{ $post->slug }}</td>
                                     <td>{{ $post->status == 1 ? 'Active' : 'Inactive' }}</td>
-                                    <td>{{ $post->order_by }}</td>
+                                   
                                     <td>{{ $post->created_at->toDayDateTimeString() }}</td>
                                     <td>{{ $post->created_at != $post->updated_at ? $post->updated_at->toDayDateTimeString() : 'Not Updated' }}
                                     </td>
@@ -53,6 +52,7 @@
                                                     </button></a>
     
                                                 {!! Form::open(['method'=>'delete', 'route'=>['post.destroy', $post->id]]) !!}
+                                                
                                                 {!! Form::button('<i class="fa-solid fa-trash"></i>', ['type'=>'submit', 'class'=>'btn btn-danger btn-sm ']) !!}
                                                 {!! Form::close() !!}
                                         </div>

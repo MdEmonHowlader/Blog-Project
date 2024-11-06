@@ -18,50 +18,46 @@
                                 </td>
 
                             </tr>
-                                <tr>
-                                    <th>Name</th>
-                                    <td>
-                                        {{ $post->name }}
-                                    </td>
+                            <tr>
+                                <th>Title</th>
+                                <td>
+                                    {{ $post->title }}
+                                </td>
 
-                                </tr>
-                                <tr><th>Slug</th>
-                                    <td>
-                                        {{ $post->slug }}
-                                    </td>
+                            </tr>
+                            <tr>
+                                <th>Slug</th>
+                                <td>
+                                    {{ $post->slug }}
+                                </td>
 
-                                </tr>
-                                <tr>
-                                    <th>Status</th>
-                                    <td>
-                                        {{ $post->status == 1 ? 'Active' : 'Inactive' }}
-                                    </td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>
+                                    {{ $post->status == 1 ? 'Active' : 'Inactive' }}
+                                </td>
 
-                                </tr>
-                                <tr>
-                                    <th>Order By</th>
-                                    <td>{{ $post->order_by }}</td>
-                                </tr>
-                                
-                                <tr>
-                                    <th>Create At</th>
-                                    <td>
-                                        {{ $post->created_at->toDayDateTimeString() }}
-                                    </td>
-                                </tr>
-                               <tr>
+                            </tr>
+                            <tr>
+                                <th>Create At</th>
+                                <td>
+                                    {{ $post->created_at->toDayDateTimeString() }}
+                                </td>
+                            </tr>
+                            <tr>
                                 <th>Updated At</th>
                                 <td>
                                     {{ $post->created_at != $post->updated_at ? $post->updated_at->toDayDateTimeString() : 'Not Updated' }}
                                 </td>
-                               </tr>
-                                
-                                
-                            
+                            </tr>
+
+
+
                         </tbody>
                     </table>
                     <a href="{{ route('post.index') }}"><button class="btn btn-success btn-sm mt-1">
-                        Back</button></a>
+                            Back</button></a>
                 </div>
             </div>
         </div>

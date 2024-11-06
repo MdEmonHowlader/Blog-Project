@@ -26,16 +26,14 @@ Route::get('/single-post', [FrontendController::class, 'single'])->name('single.
 Route::get('/about', [FrontendController::class, 'About'])->name('about.page');
 Route::get('/blog', [FrontendController::class, 'Blog'])->name('blog.page');
 Route::get('/contact', [FrontendController::class, 'Contact'])->name('contact.page');
-
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', [BackendController::class, 'index'])
         ->middleware(['auth', 'verified'])->name('dash.index');
-
     Route::resource('categroy', CategroyController::class);
+    Route::get('get-subCategory/{id}',[SubCategoryController::class, 'getSubCategoryByCategoryId'] );
     Route::resource('tag', TagController::class);
     Route::resource('post', PostController::class);
     Route::resource('subCategory', SubCategoryController::class);
-
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

@@ -27,7 +27,7 @@ class SubCategoryController extends Controller
     {
         $categories = Categroy::pluck('name', 'id');
 
-        return view('Admin.modules.subCategory.subCategroy', compact('categories',));
+        return view('Admin.modules.subCategory.subCategroy', compact('categories'));
     }
 
     /**
@@ -104,6 +104,12 @@ class SubCategoryController extends Controller
         session()->flash('msg', 'Category Delete Successfully');
 
         return redirect()->route('subCategory.index');
+
+    }
+
+    public function getSubCategoryByCategoryId(int $id){
+        $subCategory=SubCategory::select('id', 'name')->where('status',1)->where('category_id', $id)->get();
+        return response()->json($subCategory);
 
     }
 }

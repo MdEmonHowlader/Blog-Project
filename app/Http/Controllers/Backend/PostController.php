@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Categroy;
+use App\Models\SubCategory;
 use App\Models\Post;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -23,7 +26,10 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('Admin.modules.post.post');
+        $categories = Categroy::where('status',1)->pluck('name', 'id');
+        // $subCategory = SubCategory::pluck('name', 'id');
+        $tags=Tag::where('status',1)->select('name','id')->get();
+        return view('Admin.modules.post.post', compact('categories',  'tags'));
     }
 
     /**
@@ -32,9 +38,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|min:3|max:255',
-            'slug' => 'required|min:3|max:255',
-            'order_by' => 'required|numeric',
+            'title' => 'required|min:3|max:255',
+            'slug' => 'required|min:3|max:255',    
             'status' => 'required|in:0,1',
         ]);
         $post_data = $request->all();
@@ -69,9 +74,8 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $this->validate($request, [
-            'name' => 'required|min:3|max:255',
+            'title' => 'required|min:3|max:255',
             'slug' => 'required|min:3|max:255',
-            'order_by' => 'required|numeric',
             'status' => 'required|in:0,1',
         ]);
         $post_data = $request->all();
