@@ -19,7 +19,7 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Tag
                 </a>
-                <a class="nav-link" href="{{ route('post.index') }}">
+                <a class="nav-link" href="{{ route('posts.index') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>
                     Post
                 </a>

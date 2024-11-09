@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Backend\PostController;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PostCreateRequest;
 use App\Models\Categroy;
 use App\Models\SubCategory;
 use App\Models\Post;
@@ -26,6 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        
         $categories = Categroy::where('status',1)->pluck('name', 'id');
         // $subCategory = SubCategory::pluck('name', 'id');
         $tags=Tag::where('status',1)->select('name','id')->get();
@@ -35,8 +38,10 @@ class PostController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
+    public function store(PostCreateRequest $request)
+    {       
+        $post_data =$request->except(['tag_ids', 'photo', 'sulg']);
+        dd($post_data);
         $this->validate($request, [
             'title' => 'required|min:3|max:255',
             'slug' => 'required|min:3|max:255',    
@@ -56,8 +61,8 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $post=Post::findOrFail($id);
-        return view('Admin.modules.post.show', compact('post'));
+        $posts=Post::findOrFail($id);
+        return view('Admin.modules.post.show', compact('posts'));
     }
 
     /**

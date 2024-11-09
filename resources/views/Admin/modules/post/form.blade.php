@@ -33,17 +33,19 @@
             </select>
         </div>
     </div>
-    {!! Form::label('photo', 'Select Photo', ['class' => 'mt-2']) !!}
-    {!! Form::file('photo', ['class'=>'form-control']) !!}
+
 
     {!! Form::label('description', 'Description', ['class' => 'mt-3']) !!}
     {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control', 'placeholder' => 'Description']) !!}
     {!! Form::label('tag_id', 'Tag', ['class' => 'mt-3']) !!}
+
+    {!! Form::label('photo', 'Select Photo', ['class' => 'mt-2']) !!}
+    {!! Form::file('photo', ['class'=>'form-control']) !!}
 <br/>
 <div class="row">
     @foreach ($tags as $tag )
 <div class="col-md-4">
-    {!! Form::checkbox('tag_id',null, false) !!}
+    {!! Form::checkbox('tag_ids[]', $tag->id, false) !!}
     <span>
         {{ $tag->name }}
     </span>

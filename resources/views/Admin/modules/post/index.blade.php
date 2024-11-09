@@ -8,7 +8,7 @@
                 <div class="card-header">
                     <div class="d-flex justify-content-between">
                         <h4>Post List</h4>
-                        <a href="{{ route('post.create') }}"><button class="btn btn-success btn-sm">Add</button></a>
+                        <a href="{{ route('posts.create') }}"><button class="btn btn-success btn-sm">Add</button></a>
 
                     </div>
                     
