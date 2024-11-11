@@ -31,7 +31,7 @@ class PostCreateRequest extends FormRequest
                 'description' => 'required',
                 'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
                 'tag_ids' => 'required|array|min:1',
-                'tag_ids.*' => 'integer|exists:tags,id',
+                
             ];
        
     }

@@ -36,32 +36,35 @@
 
 
     {!! Form::label('description', 'Description', ['class' => 'mt-3']) !!}
-    {!! Form::textarea('description', null, ['id'=>'description', 'class' => 'form-control', 'placeholder' => 'Description']) !!}
+    {!! Form::textarea('description', null, [
+        'id' => 'description',
+        'class' => 'form-control',
+        'placeholder' => 'Description',
+    ]) !!}
     {!! Form::label('tag_id', 'Tag', ['class' => 'mt-3']) !!}
 
     {!! Form::label('photo', 'Select Photo', ['class' => 'mt-2']) !!}
-    {!! Form::file('photo', ['class'=>'form-control']) !!}
-<br/>
-<div class="row">
-    @foreach ($tags as $tag )
-<div class="col-md-4">
-    {!! Form::checkbox('tag_ids[]', $tag->id, false) !!}
-    <span>
-        {{ $tag->name }}
-    </span>
-</div>
-    
-@endforeach
+    {!! Form::file('photo', ['class' => 'form-control']) !!}
+    <br />
+    <div class="row">
+        @foreach ($tags as $tag)
+            <div class="col-md-4">
+                {!! Form::checkbox('tag_ids[]', $tag->id, false) !!}
+                <span>
+                    {{ $tag->name }}
+                </span>
+            </div>
+        @endforeach
 
-</div>
+    </div>
 
 
     @push('css')
-    <style>
-        .ck.ck-editor__main>.ck-editor__editable{
-            min-height: 200px;
-        }
-    </style>        
+        <style>
+            .ck.ck-editor__main>.ck-editor__editable {
+                min-height: 200px;
+            }
+        </style>
     @endpush
     @push('js')
         <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.7.7/axios.min.js"
