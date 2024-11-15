@@ -14,46 +14,43 @@
                             <tr>
                                 <th>ID</th>
                                 <td>
-                                    {{ $post->id }}
+                                    {{ $posts->id }}
                                 </td>
 
                             </tr>
                             <tr>
                                 <th>Title</th>
                                 <td>
-                                    {{ $post->title }}
+                                    {{ $posts->title }}
                                 </td>
 
                             </tr>
                             <tr>
                                 <th>Slug</th>
                                 <td>
-                                    {{ $post->slug }}
+                                    {{ $posts->slug }}
                                 </td>
 
                             </tr>
                             <tr>
                                 <th>Status</th>
                                 <td>
-                                    {{ $post->status == 1 ? 'Active' : 'Inactive' }}
+                                    {{ $posts->status == 1 ? 'Active' : 'Inactive' }}
                                 </td>
 
                             </tr>
                             <tr>
                                 <th>Create At</th>
                                 <td>
-                                    {{ $post->created_at->toDayDateTimeString() }}
+                                    {{ $posts->created_at->toDayDateTimeString() }}
                                 </td>
                             </tr>
                             <tr>
                                 <th>Updated At</th>
                                 <td>
-                                    {{ $post->created_at != $post->updated_at ? $post->updated_at->toDayDateTimeString() : 'Not Updated' }}
+                                    {{ $posts->created_at != $posts->updated_at ? $posts->updated_at->toDayDateTimeString() : 'Not Updated' }}
                                 </td>
                             </tr>
-
-
-
                         </tbody>
                     </table>
                     <a href="{{ route('post.index') }}"><button class="btn btn-success btn-sm mt-1">

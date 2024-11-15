@@ -45,6 +45,7 @@
 
     {!! Form::label('photo', 'Select Photo', ['class' => 'mt-2']) !!}
     {!! Form::file('photo', ['class' => 'form-control']) !!}
+    
     <br />
     <div class="row">
         @foreach ($tags as $tag)

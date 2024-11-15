@@ -32,8 +32,8 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::resource('categroy', CategroyController::class);
     Route::get('get-subCategory/{id}',[SubCategoryController::class, 'getSubCategoryByCategoryId'] );
     Route::resource('tag', TagController::class);
-    Route::resource('posts', PostController::class);
-    Route::resource('subCategory', SubCategoryController::class);
+    Route::resource('post', PostController::class);
+    Route::resource('subCategory', SubCategoryController::class);   
 });
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

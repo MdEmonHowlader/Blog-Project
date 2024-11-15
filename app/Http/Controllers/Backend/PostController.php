@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Backend\PostController;
+
 use App\Http\Controllers\Backend\PhotoUploadController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostCreateRequest;
@@ -21,7 +21,10 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::all();
+        $posts=Post::with('category','subcategory', 'user', 'tag')->latest()->paginate(20);
+        // dd($posts); 
+        // return $posts;
+        
         return view('Admin.modules.post.index', compact('posts'));
     }
 
@@ -32,9 +35,9 @@ class PostController extends Controller
     {
         
         $categories = Categroy::where('status',1)->pluck('name', 'id');
-        // $subCategory = SubCategory::pluck('name', 'id');
+       $subCategory = SubCategory::where('status',1)->pluck('name', 'id');
         $tags=Tag::where('status',1)->select('name','id')->get();
-        return view('Admin.modules.post.post', compact('categories',  'tags'));
+        return view('Admin.modules.post.post', compact('categories',  'tags', 'subCategory'));
     }
 
     /**
@@ -61,6 +64,7 @@ class PostController extends Controller
         }
         $post = Post::create($post_data);
         $post->tag()->attach($request->input('tag_ids'));
+        return redirect()->route('post.index');
         
 
     }
@@ -68,38 +72,38 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
-    {
-        $posts=Post::findOrFail($id);
-        return view('Admin.modules.post.show', compact('posts'));
-    }
+    // public function show($id)
+    // {
+    //     $posts=Post::findOrFail($id);
+    //     return view('Admin.modules.post.show', compact('posts'));
+    // }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $post)
-    {
-        return view('Admin.modules.post.edit', compact('post'));
-    }
+    // public function edit(Post $post)
+    // {
+    //     return view('Admin.modules.post.edit', compact('post'));
+    // }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Post $post)
-    {
-        $this->validate($request, [
-            'title' => 'required|min:3|max:255',
-            'slug' => 'required|min:3|max:255',
-            'status' => 'required|in:0,1',
-        ]);
-        $post_data = $request->all();
-        $post_data['slug'] = Str::slug($request->input('slug'));
-        Post::create($post_data);
-        session()->flash('cls', 'success');
-        session()->flash('msg', 'Post Created Successfully');
-        return redirect()->route('post.index');
+    // public function update(Request $request, Post $post)
+    // {
+    //     $this->validate($request, [
+    //         'title' => 'required|min:3|max:255',
+    //         'slug' => 'required|min:3|max:255',
+    //         'status' => 'required|in:0,1',
+    //     ]);
+    //     $post_data = $request->all();
+    //     $post_data['slug'] = Str::slug($request->input('slug'));
+    //     Post::create($post_data);
+    //     session()->flash('cls', 'success');
+    //     session()->flash('msg', 'Post Created Successfully');
+    //     return redirect()->route('post.index');
 
-    }
+    // }
 
     /**
      * Remove the specified resource from storage.
