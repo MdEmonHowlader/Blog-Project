@@ -19,20 +19,20 @@ class PostCreateRequest extends FormRequest
      *
      * @return array<string, 
      */
-    // public function rules(): array
-    // {
+    public function rules(): array
+    {
        
-    //         return [
-    //             'title' => 'required|min:3|max:255',
-    //             'slug' => 'required|min:3|max:255|unique:posts',
-    //             'status' => 'required|in:0,1',
-    //             'category_id' => 'required|exists:categories,id',
-    //             'subCategory_id' => 'required|exists:sub_categories,id',
-    //             'description' => 'required',
-    //             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:3048',
-    //             'tag_ids' => 'required|array|min:1',
+            return [
+                'title' => 'required|min:3|max:255',
+                'slug' => 'required|min:3|max:255|unique:posts',
+                'status' => 'required',
+                'category_id' => 'required',
+                'subCategory_id' => 'required',
+                'description' => 'required',
+                'photo' => 'required',
+                'tag_ids' => 'required',
                 
-    //         ];
+            ];
        
-    // }
+    }
 }

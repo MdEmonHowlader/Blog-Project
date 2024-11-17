@@ -34,7 +34,10 @@ Route::group(['prefix' => 'dashboard'], function () {
     Route::resource('tag', TagController::class);
     Route::resource('post', PostController::class);
     Route::resource('subCategory', SubCategoryController::class);   
+   
+
 });
+// Route::get('dashboard/category/{category}', [CategroyController::class, 'show'])->name('category.show');
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

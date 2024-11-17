@@ -14,8 +14,6 @@
                 </ol>
                 @yield('content')
                 
-           
-               
             </div>
         </main>
    @include('Admin.includes.footer')

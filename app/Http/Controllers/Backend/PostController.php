@@ -6,6 +6,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Backend\PhotoUploadController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\PostCreateRequest;
+use App\Http\Requests\PostUpdateRequest;
 use App\Models\Categroy;
 use App\Models\SubCategory;
 use App\Models\Post;
@@ -21,7 +22,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts=Post::with('category','subcategory', 'user', 'tag')->latest()->paginate(20);
+        $posts=Post::with('category','subcategory', 'user', 'tag')->latest()->paginate(10);
         // dd($posts); 
         // return $posts;
         
@@ -45,6 +46,8 @@ class PostController extends Controller
      */
     public function store(PostCreateRequest $request)
     {       
+        // return $request->all();
+        
         $post_data =$request->except(['tag_ids', 'photo', 'slug']);
         $post_data['slug']= Str::slug($request->input('slug'));
         $post_data['user_id'] = Auth::user()->id;
@@ -65,45 +68,59 @@ class PostController extends Controller
         $post = Post::create($post_data);
         $post->tag()->attach($request->input('tag_ids'));
         return redirect()->route('post.index');
-        
+       
+   
 
     }
 
     /**
      * Display the specified resource.
      */
-    // public function show($id)
-    // {
-    //     $posts=Post::findOrFail($id);
-    //     return view('Admin.modules.post.show', compact('posts'));
-    // }
+    public function show($id)
+    {
+        $posts=Post::with('category','subcategory', 'user', 'tag')->where('id',$id)->first();
+
+        return view('Admin.modules.post.show', compact('posts'));
+    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    // public function edit(Post $post)
-    // {
-    //     return view('Admin.modules.post.edit', compact('post'));
-    // }
+    public function edit(Post $post)
+    {
+        $categories = Categroy::where('status',1)->pluck('name', 'id');
+        $subCategory = SubCategory::where('status',1)->pluck('name', 'id');
+         $tags=Tag::where('status',1)->select('name','id')->get();
+         return view('Admin.modules.post.edit', compact('post', 'categories',  'tags', 'subCategory'));
+    }
 
     /**
      * Update the specified resource in storage.
      */
-    // public function update(Request $request, Post $post)
-    // {
-    //     $this->validate($request, [
-    //         'title' => 'required|min:3|max:255',
-    //         'slug' => 'required|min:3|max:255',
-    //         'status' => 'required|in:0,1',
-    //     ]);
-    //     $post_data = $request->all();
-    //     $post_data['slug'] = Str::slug($request->input('slug'));
-    //     Post::create($post_data);
-    //     session()->flash('cls', 'success');
-    //     session()->flash('msg', 'Post Created Successfully');
-    //     return redirect()->route('post.index');
+    public function update(PostUpdateRequest $request, Post $post)
+    {
+        $post_data =$request->except(['tag_ids', 'photo', 'slug']);
+        $post_data['slug']= Str::slug($request->input('slug'));
+        $post_data['user_id'] = Auth::user()->id;
+        $post_data['is_approved']=1;
+        if($request->hasFile('photo')){
+            $file = $request->file('photo');
+            $name=Str::slug($request->input('slug'));
+            $height=400;
+            $width=1000;
+            $thumb_height=150;
+            $thumb_width=300;
+            $path='image/post/original/';
+            $thumb_path='image/post/thumbnail/';
+            $photoUpload = new PhotoUploadController();
+            $post_data['photo'] = $photoUpload->imageUpload($name, $height, $width, $path, $file);
+            $photoUpload->imageUpload($name, $thumb_height, $thumb_width, $thumb_path, $file);
+        }
+        $post->update($post_data);
+        $post->tag()->syn($request->input('tag_ids'));
+        return redirect()->route('post.index');
 
-    // }
+    }
 
     /**
      * Remove the specified resource from storage.

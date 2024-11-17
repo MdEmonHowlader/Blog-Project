@@ -23,10 +23,11 @@
                             </div>
                         @endif
 
-                        {!! Form::open(['method' => 'posts', 'route' => 'post.store']) !!}
+                        {!! Form::open(['method' => 'POST', 'route' => 'post.store', 'enctype' => 'multipart/form-data']) !!}
                         @include('Admin.modules.post.form')
                         {!! Form::button('Create post', ['type' => 'submit', 'class' => 'btn btn-success mt-2']) !!}
                         {!! Form::close() !!}
+
 
                     </div>
                 </div>

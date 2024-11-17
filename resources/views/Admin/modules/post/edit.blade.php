@@ -3,7 +3,7 @@
 @section('sub_title', 'Edit')
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
                     <h4>Post Update</h4>

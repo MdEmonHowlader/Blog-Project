@@ -36,7 +36,7 @@
                                     <p>Is Approved</p>
                                 </th>
                                 <th>Photo</th>
-                                
+                                <th>Tage</th>
                                 <th>
                                     <p>Create At</p>
                                     
@@ -59,17 +59,26 @@
                                         <p>{{ $post->slug }}</p>
                                     </td>
                                     <td>
-                                        <p>{{ $post->category->slug }}</p>
+                                        <p>                                           
+                                                {{ $post->category->slug }}
+
+                                            
+                                        </p>
 
                                         <p>{{ $post->subcategory->slug ?? ''}}</p>
                                     </td>
                                     <td>
-                                        <p>{{ $post->status == 1 ? 'Active' : 'Inactive' }}</p>
+                                        <p>{{ $post->status == 1 ? 'Published' : 'Not Published' }}</p>
 
-                                        <p>{{ $post->is_approved }}</p>
+                                        <p>{{ $post->is_approved == 1 ? 'Approved' : 'Not Approved' }}</p>
                                     </td>
                                     <td>
-                                        <img src="{{ asset($post->photo) }}" alt="Post Image" width="50">
+                                        <img id="post_image" src="{{ url('image/post/thumbnail/'.$post->photo) }}" alt="{{ $post->title }}" width="80" height="100">
+                                    </td>
+                                    <td>
+                                        @foreach ($post->tag as $tag)
+                                            <span class="btn btn-success md-1">{{ $tag->name }}</span>
+                                        @endforeach
                                     </td>
                                
                                     <td>
@@ -77,8 +86,12 @@
 
                                         <p>
 
-                                            {{ $post->created_at != $post->updated_at ? $post->updated_at->toDayDateTimeString() : 'Not Updated' }}
+                                            {{-- {{ $post->created_at != $post->updated_at ? $post->updated_at->toDayDateTimeString() : 'Not Updated' }}  --}}
+                                            {{ $post->created_at != $post->updated_at 
+                                                ? optional($post->updated_at)->toDayDateTimeString() 
+                                                : 'Not Updated' }}
                                         </p>
+                                        <p>{{ $post->user?->name }}</p>
                                     </td>
                                          
                                     <td>
@@ -102,6 +115,11 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="mt-3">
+                        {{ $posts->links() }}
+
+                    </div>
+
                 </div>
             </div>
         </div>
