@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Pagination\Paginator;
 use App\Models\Categroy;
+use App\Models\Tag;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,7 +24,8 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
         $categories = Categroy::with('sub_categories')->where('status', 1)->orderBy('order_by', 'asc')->get();
-        view()->share('categories', $categories);
+        $tags= Tag::where('status', 1)->orderBy('order_by', 'asc')->get();
+        view()->share(['categories'=>$categories, 'tags'=>$tags]);
     }
     
 }

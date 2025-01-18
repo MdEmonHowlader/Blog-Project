@@ -24,10 +24,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [FrontendController::class, 'index'])->name('emon.index');
 Route::get('/category/{slug}', [FrontendController::class, 'index'])->name('emon.category');
 Route::get('/category/{cat_slug}/{sub_cat_slug}', [FrontendController::class, 'index'])->name('emon.subCategory');
+Route::get('/tag/{slug}', [FrontendController::class, 'index'])->name('emon.tag');
 Route::get('/single-post', [FrontendController::class, 'single'])->name('single.post');
 Route::get('/about', [FrontendController::class, 'About'])->name('about.page');
 Route::get('/blog', [FrontendController::class, 'Blog'])->name('blog.page');
 Route::get('/contact', [FrontendController::class, 'Contact'])->name('contact.page');
+
+
 Route::group(['prefix' => 'dashboard'], function () {
     Route::get('/', [BackendController::class, 'index'])
         ->middleware(['auth', 'verified'])->name('dash.index');
