@@ -41,12 +41,17 @@
                     </div>
                     <div class="content">
                         <ul>
-                            <li><a href="#">- Nature Lifestyle</a></li>
-                            <li><a href="#">- Awesome Layouts</a></li>
-                            <li><a href="#">- Creative Ideas</a></li>
-                            <li><a href="#">- Responsive Templates</a></li>
-                            <li><a href="#">- HTML5 / CSS3 Templates</a></li>
-                            <li><a href="#">- Creative &amp; Unique</a></li>
+                            @foreach ($categories as $category)
+                            <li><a href="{{ route('emon.category',$category->slug) }}">{{ $category->name }}</a>
+                                <ul class="sidebar-sub-categories">
+                                    @foreach ($category->sub_categories as $subcategory)
+                                    <li><a href="{{ route('emon.subCategory', [$category->slug, $subcategory->slug]) }}">{{ $subcategory->name }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </li>
+                            @endforeach
+                            
+                           
                         </ul>
                     </div>
                 </div>

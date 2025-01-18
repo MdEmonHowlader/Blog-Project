@@ -1,0 +1,17 @@
+.sidebar-sub-categories{
+    padding-left: 20px;
+
+}
+.sidebar-sub-categories li{
+    
+    padding: 5px 0 !important;
+    margin: 0 !important;
+}
+.sidebar-sub-categories li a{
+    
+    font-size: 14px!important;
+    color: rgb(25, 159, 255)!important;
+}
+.sidebar-sub-categories li a:hover{
+    color: #652121!important;
+}
