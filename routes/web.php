@@ -25,6 +25,7 @@ Route::get('/', [FrontendController::class, 'index'])->name('emon.index');
 Route::get('/category/{slug}', [FrontendController::class, 'index'])->name('emon.category');
 Route::get('/category/{cat_slug}/{sub_cat_slug}', [FrontendController::class, 'index'])->name('emon.subCategory');
 Route::get('/tag/{slug}', [FrontendController::class, 'index'])->name('emon.tag');
+Route::get('/post/{slug}', [FrontendController::class, 'index'])->name('emon.post');
 Route::get('/single-post', [FrontendController::class, 'single'])->name('single.post');
 Route::get('/about', [FrontendController::class, 'About'])->name('about.page');
 Route::get('/blog', [FrontendController::class, 'Blog'])->name('blog.page');

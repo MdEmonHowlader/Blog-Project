@@ -4,13 +4,15 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
 
 
 class FrontendController extends Controller
 {
     public function  index(){
+        $posts = Post::with('category', 'tag', 'user')->where('is_approved', 1)->where('status', 1)->latest()->paginate(5);
         
-        return view('Frontend.modules.index');
+        return view('Frontend.modules.index', compact('posts'));
     }
     public function single(){
         return view('Frontend.modules.single');
